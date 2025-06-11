@@ -1,0 +1,123 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyP4zeABYN47yg0YzEF5nDjA",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Tazagi-web/Kelvin-DS/blob/main/Weather%20Data\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "3CTKRGhtIIRN"
+      },
+      "outputs": [],
+      "source": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Weather Data"
+      ],
+      "metadata": {
+        "id": "fU93fzYEINet"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "AX2Ttza-IJ5g"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import requests\n",
+        "import pandas as pd\n",
+        "import time\n",
+        "\n",
+        "API_KEY =\"957da8aac6e362628ed22609227dd784\"\n",
+        "BASE_URL = 'http://api.openweathermap.org/data/2.5/weather'\n",
+        "\n",
+        "\n",
+        "# List of cities to collect data from\n",
+        "cities = ['Nairobi', 'Kampala', 'Mombasa', 'Addis Ababa', 'Dar es Salaam',\n",
+        "         'Lusaka', 'Kigali', 'Johannesburg', 'Cairo', 'Lagos']\n",
+        "\n",
+        "# Initialize an empty list to store data\n",
+        "weather_data = []\n",
+        "\n",
+        "for city in cities:\n",
+        "   params = {\n",
+        "       'q': city,\n",
+        "       'appid': API_KEY,\n",
+        "       'units': 'metric'\n",
+        "   }\n",
+        "   response = requests.get(BASE_URL, params=params)\n",
+        "\n",
+        "   if response.status_code == 200:\n",
+        "       data = response.json()\n",
+        "       weather_data.append({\n",
+        "           'city': city,\n",
+        "           'temperature': data['main']['temp'],\n",
+        "           'humidity': data['main']['humidity'],\n",
+        "           'pressure': data['main']['pressure'],\n",
+        "           'wind_speed': data['wind']['speed']\n",
+        "       })\n",
+        ""
+      ],
+      "metadata": {
+        "id": "1E2mCQjhIUQm"
+      },
+      "execution_count": 1,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(weather_data)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ReIQmJ9YJHSY",
+        "outputId": "82b54da2-7a3d-4996-9098-d9557fdfe1fb"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[{'city': 'Nairobi', 'temperature': 19.93, 'humidity': 60, 'pressure': 1017, 'wind_speed': 5.14}, {'city': 'Kampala', 'temperature': 18.98, 'humidity': 79, 'pressure': 1013, 'wind_speed': 1.6}, {'city': 'Mombasa', 'temperature': 24.23, 'humidity': 94, 'pressure': 1015, 'wind_speed': 1.03}, {'city': 'Addis Ababa', 'temperature': 19.67, 'humidity': 22, 'pressure': 1013, 'wind_speed': 2.69}, {'city': 'Dar es Salaam', 'temperature': 23.62, 'humidity': 88, 'pressure': 1016, 'wind_speed': 3.07}, {'city': 'Lusaka', 'temperature': 18.18, 'humidity': 59, 'pressure': 1019, 'wind_speed': 3.73}, {'city': 'Kigali', 'temperature': 23.71, 'humidity': 50, 'pressure': 1014, 'wind_speed': 2.06}, {'city': 'Johannesburg', 'temperature': 7.79, 'humidity': 61, 'pressure': 1026, 'wind_speed': 1.16}, {'city': 'Cairo', 'temperature': 32.42, 'humidity': 40, 'pressure': 1008, 'wind_speed': 7.2}, {'city': 'Lagos', 'temperature': 26.03, 'humidity': 86, 'pressure': 1010, 'wind_speed': 2}]\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
